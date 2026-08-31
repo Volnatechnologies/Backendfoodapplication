@@ -38,9 +38,11 @@ dist/
 **/target/
 *.class
 
-# IDE
+# IntelliJ
 .idea/
 *.iml
+
+# VS Code
 .vscode/
 
 # Node / React
