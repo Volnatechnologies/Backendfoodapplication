@@ -1,0 +1,1 @@
+Dummy restaurant document for Volna API testing

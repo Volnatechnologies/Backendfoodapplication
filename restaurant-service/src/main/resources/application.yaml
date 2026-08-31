@@ -1,0 +1,30 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: restaurant-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restaurant_db
+    username: postgres
+    password: VolnaMuskan
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+app:
+  jwt:
+    secret: "RTp40Z/7pbRiwArwWjS3Xch9PgKe7LhO1j7u+BFc2Xs="
+  storage:
+    upload-dir: uploads

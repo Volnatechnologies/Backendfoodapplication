@@ -1,0 +1,112 @@
+@media (max-width: 1050px) {
+  .sidebar {
+    position: fixed;
+    z-index: 50;
+    left: -220px;
+    top: 0;
+    transition: left .2s ease;
+  }
+
+  .sidebar.sidebar-open { left: 0; }
+
+  .mobile-menu-button { display: block; }
+
+  .topbar {
+    padding: 0 15px;
+  }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .main-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coupon-card { min-height: 230px; }
+
+  .goal-promo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-content { padding: 13px; }
+
+  .page-header-row {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header-actions .round-action {
+    display: none;
+  }
+
+  .header-actions .quick-add {
+    grid-column: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bottom-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promotion-card {
+    grid-template-columns: 35px 1fr;
+  }
+
+  .promotion-metrics {
+    grid-column: 2;
+  }
+
+  .order-card-body {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-box {
+    width: 160px;
+  }
+
+  .topbar-actions {
+    gap: 8px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-banner h1 {
+    font-size: 21px;
+  }
+
+  .header-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions .quick-add {
+    grid-column: auto;
+  }
+
+  .order-total {
+    width: 100%;
+  }
+
+  .order-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .small-action {
+    display: none;
+  }
+}
