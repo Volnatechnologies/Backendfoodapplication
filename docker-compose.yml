@@ -1,0 +1,83 @@
+
+services:
+  # =========================
+  # AUTH DATABASE
+  # =========================
+  auth-postgres:
+    image: postgres:17
+    container_name: volna-auth-postgres
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: VolnaMuskan
+    ports:
+      - "5433:5432"
+    volumes:
+      - auth_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d auth_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  # =========================
+  # RESTAURANT DATABASE
+  # =========================
+  restaurant-postgres:
+    image: postgres:17
+    container_name: volna-restaurant-postgres
+    environment:
+      POSTGRES_DB: restaurant_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: VolnaMuskan
+    ports:
+      - "5434:5432"
+    volumes:
+      - restaurant_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d restaurant_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  # =========================
+  # AUTH SERVICE
+  # =========================
+  auth-service:
+    image: volna-auth-service:1.0
+    container_name: volna-auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://auth-postgres:5432/auth_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: VolnaMuskan
+    depends_on:
+      auth-postgres:
+        condition: service_healthy
+
+
+  # =========================
+  # RESTAURANT SERVICE
+  # =========================
+  restaurant-service:
+    image: volna-restaurant-service:1.0
+    container_name: volna-restaurant-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://restaurant-postgres:5432/restaurant_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: VolnaMuskan
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      restaurant-postgres:
+        condition: service_healthy
+
+
+volumes:
+  auth_postgres_data:
+  restaurant_postgres_data:
