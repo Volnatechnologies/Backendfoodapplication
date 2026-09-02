@@ -26,6 +26,7 @@ public class RestaurantDashboardServiceImpl implements RestaurantDashboardServic
 
     private static final BigDecimal ZERO_REVENUE = BigDecimal.ZERO;
 
+
     private final RestaurantRepository restaurantRepository;
     private final RestaurantDocumentRepository restaurantDocumentRepository;
 
