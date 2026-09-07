@@ -58,7 +58,12 @@ public class SecurityConfig {
                   a
                           .requestMatchers(
                                   "/actuator/health",
-                                  "/actuator/info"
+                                  "/actuator/info",
+                                  "/uploads/**",
+                                  "/api/menu/**",
+                                  "/api/v1/restaurants/menu/**",
+                                  "/api/v1/combos/**",
+                                  "/api/v1/happy-hour/**"
                           ).permitAll()
 
                           .requestMatchers(

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { DashboardLayout } from './components/layout/DashboardLayout';
+import { MenuManagement } from './components/sections/MenuManagement';
 import { HeroSearch } from './components/sections/HeroSearch';
 import { GettingStartedAccordion } from './components/sections/GettingStartedAccordion';
 import { FeaturedResources } from './components/sections/FeaturedResources';
@@ -19,7 +20,7 @@ import type { NotificationItem } from './types/dashboard';
 import { SearchX } from 'lucide-react';
 
 export function App() {
-  const [activeNav, setActiveNav] = useState('services');
+  const [activeNav, setActiveNav] = useState('menu');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -41,7 +42,6 @@ export function App() {
     setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
   };
 
-  // Real-time Search Filtering
   const filteredGettingStarted = useMemo(() => {
     if (!searchQuery.trim()) return gettingStartedFaqs;
     const q = searchQuery.toLowerCase();
@@ -94,62 +94,58 @@ export function App() {
         />
       </div>
 
-      {/* 1. HERO SEARCH SECTION */}
-      <HeroSearch
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        onSearchSubmit={handleSearchSubmit}
-        filteredCount={totalFilteredCount}
-      />
-
-      {/* SEARCH EMPTY STATE IF NOTHING MATCHES */}
-      {searchQuery && totalFilteredCount === 0 ? (
-        <div className="bg-white rounded-3xl p-10 text-center my-8 shadow-soft-card border border-slate-100 max-w-lg mx-auto">
-          <SearchX className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-          <h3 className="font-extrabold text-lg text-slate-900 mb-1">No articles found</h3>
-          <p className="text-xs text-slate-600 mb-5">
-            We couldn&apos;t find any results matching &quot;<span className="font-semibold">{searchQuery}</span>&quot;.
-          </p>
-          <button
-            onClick={() => setSearchQuery('')}
-            className="bg-[#0B6799] text-white font-bold text-xs px-5 py-2.5 rounded-full hover:bg-[#08527C] transition-all"
-          >
-            Clear Search Filter
-          </button>
-        </div>
+      {/* RENDER MENU MANAGEMENT WHEN ACTIVE */}
+      {activeNav === 'menu' ? (
+        <MenuManagement />
       ) : (
         <>
-          {/* 2. GETTING STARTED SECTION */}
-          <GettingStartedAccordion items={filteredGettingStarted} />
-
-          {/* 3. FEATURED RESOURCE CARDS */}
-          <FeaturedResources
-            onSelectResource={(title) => {
-              setSearchQuery(title);
-            }}
+          {/* HERO SEARCH SECTION */}
+          <HeroSearch
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onSearchSubmit={handleSearchSubmit}
+            filteredCount={totalFilteredCount}
           />
 
-          {/* 4. CATEGORY CARDS */}
-          <CategoryCards
-            onCategoryClick={(title) => {
-              setSearchQuery(title);
-            }}
-          />
+          {searchQuery && totalFilteredCount === 0 ? (
+            <div className="bg-white rounded-3xl p-10 text-center my-8 shadow-soft-card border border-slate-100 max-w-lg mx-auto">
+              <SearchX className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+              <h3 className="font-extrabold text-lg text-slate-900 mb-1">No articles found</h3>
+              <p className="text-xs text-slate-600 mb-5">
+                We couldn&apos;t find any results matching &quot;<span className="font-semibold">{searchQuery}</span>&quot;.
+              </p>
+              <button
+                onClick={() => setSearchQuery('')}
+                className="bg-[#0B6799] text-white font-bold text-xs px-5 py-2.5 rounded-full hover:bg-[#08527C] transition-all"
+              >
+                Clear Search Filter
+              </button>
+            </div>
+          ) : (
+            <>
+              <GettingStartedAccordion items={filteredGettingStarted} />
+              <FeaturedResources
+                onSelectResource={(title) => {
+                  setSearchQuery(title);
+                }}
+              />
+              <CategoryCards
+                onCategoryClick={(title) => {
+                  setSearchQuery(title);
+                }}
+              />
+              <FAQAndSupportSection
+                faqs={filteredGeneralFaqs}
+                onOpenChat={() => setIsChatOpen(true)}
+                onOpenCallback={() => setIsCallbackOpen(true)}
+              />
+              <AcademyBanner onStartLearning={() => setIsChatOpen(true)} />
+            </>
+          )}
 
-          {/* 5. FAQ & NEED MORE HELP SECTION */}
-          <FAQAndSupportSection
-            faqs={filteredGeneralFaqs}
-            onOpenChat={() => setIsChatOpen(true)}
-            onOpenCallback={() => setIsCallbackOpen(true)}
-          />
-
-          {/* 6. ELITE ACADEMY BANNER */}
-          <AcademyBanner onStartLearning={() => setIsChatOpen(true)} />
+          <Footer />
         </>
       )}
-
-      {/* 7. FOOTER */}
-      <Footer />
 
       {/* Interactive Modals */}
       <LiveChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />

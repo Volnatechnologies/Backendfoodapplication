@@ -4,6 +4,7 @@ export const navigationItems: NavItem[] = [
   { id: 'dashboard', label: 'Dashboard', iconName: 'LayoutGrid' },
   { id: 'bookings', label: 'Bookings', iconName: 'Calendar' },
   { id: 'analytics', label: 'Analytics', iconName: 'LineChart' },
+  { id: 'menu', label: 'Menu', iconName: 'UtensilsCrossed' },
   { id: 'services', label: 'Services', iconName: 'SlidersHorizontal' },
   { id: 'performance', label: 'Performance', iconName: 'Activity' },
   { id: 'reviews', label: 'Reviews', iconName: 'MessageSquare' },

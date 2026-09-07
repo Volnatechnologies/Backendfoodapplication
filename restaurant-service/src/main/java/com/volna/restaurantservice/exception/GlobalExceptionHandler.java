@@ -10,6 +10,14 @@ import org.springframework.http.HttpStatus; import org.springframework.web.bind.
  @ResponseStatus(HttpStatus.NOT_FOUND)
  Map<String,Object> notFound(ResourceNotFoundException e){
   return body(404,e.getMessage());}
+ @ExceptionHandler(DuplicateResourceException.class)
+ @ResponseStatus(HttpStatus.CONFLICT)
+ Map<String,Object> duplicate(DuplicateResourceException e){
+  return body(409,e.getMessage());}
+ @ExceptionHandler(FileStorageException.class)
+ @ResponseStatus(HttpStatus.BAD_REQUEST)
+ Map<String,Object> fileStorage(FileStorageException e){
+  return body(400,e.getMessage());}
  @ExceptionHandler(MethodArgumentNotValidException.class) @ResponseStatus(HttpStatus.BAD_REQUEST)
  Map<String,Object> validation(MethodArgumentNotValidException e){
   Map<String,String> f=new LinkedHashMap<>();
