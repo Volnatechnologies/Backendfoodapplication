@@ -1,0 +1,31 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: meal-service
+
+  config:
+    import: optional:file:./secret/application-secret.yml
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/meal_db
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+  jwt:
+    expiration-ms: 3600000
