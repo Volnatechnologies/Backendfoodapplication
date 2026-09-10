@@ -1,0 +1,38 @@
+services:
+
+  catering-postgres:
+    image: postgres:17
+    container_name: volna-catering-postgres
+    restart: unless-stopped
+
+    env_file:
+      - ./secret/postgres.env
+
+    ports:
+      - "5436:5432"
+
+    volumes:
+      - catering_postgres_data:/var/lib/postgresql/data
+
+  catering-service:
+    build: .
+    container_name: volna-catering-service
+    restart: unless-stopped
+
+    depends_on:
+      - catering-postgres
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://catering-postgres:5432/catering_db
+      SERVICE_FEE_RATE: "0.10"
+      TAX_RATE: "0.0825"
+      DEPOSIT_RATE: "0.30"
+
+    volumes:
+      - ./secret/application-secret.yml:/app/secret/application-secret.yml:ro
+
+    ports:
+      - "8085:8085"
+
+volumes:
+  catering_postgres_data:

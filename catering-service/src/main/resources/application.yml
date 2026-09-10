@@ -1,0 +1,32 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: catering-service
+config:
+    import: optional:file:./secret/application-secret.yml
+
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/catering_db}
+          jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+    pricing:
+    service-fee-rate: ${SERVICE_FEE_RATE:0.10}
+    tax-rate: ${TAX_RATE:0.0825}
+    deposit-rate: ${DEPOSIT_RATE:0.30}
