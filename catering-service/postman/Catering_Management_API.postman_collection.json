@@ -1,0 +1,55 @@
+{
+  "info": {
+    "name": "Catering Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {"name": "Register", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"firstName\": \"Alice\",\n  \"lastName\": \"Manager\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"StrongPass123!\"\n}"}, "url": {"raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"]}}},
+        {"name": "Login", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"StrongPass123!\"\n}"}, "url": {"raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "login"]}}},
+        {"name": "Get Current User", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/auth/me", "host": ["{{baseUrl}}"], "path": ["api", "auth", "me"]}}}
+      ]
+    },
+    {
+      "name": "Dashboard & Config",
+      "item": [
+        {"name": "Dashboard", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/dashboard", "host": ["{{baseUrl}}"], "path": ["api", "catering", "dashboard"]}}},
+        {"name": "Event Types", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/event-types", "host": ["{{baseUrl}}"], "path": ["api", "catering", "event-types"]}}},
+        {"name": "Menu Packages", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/menu-packages", "host": ["{{baseUrl}}"], "path": ["api", "catering", "menu-packages"]}}},
+        {"name": "Custom Options", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/custom-options", "host": ["{{baseUrl}}"], "path": ["api", "catering", "custom-options"]}}}
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {"name": "Create Draft", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Authorization", "value": "Bearer {{token}}"}], "body": {"mode": "raw", "raw": "{\n  \"eventName\": \"TechCorp Annual Retreat\",\n  \"eventTypeId\": \"{{eventTypeId}}\",\n  \"eventDate\": \"2026-10-24\",\n  \"eventTime\": \"10:00:00\",\n  \"guestCount\": 150,\n  \"venueAddress\": \"123 Business Way, Suite 500, Metropolis, NY 10001\",\n  \"specialInstructions\": \"Loading dock access required\",\n  \"menuPackageId\": \"{{menuPackageId}}\",\n  \"customOptionIds\": [\"{{customOptionId}}\"]\n}"}, "url": {"raw": "{{baseUrl}}/api/catering/bookings/draft", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "draft"]}}},
+        {"name": "Create Booking", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Authorization", "value": "Bearer {{token}}"}], "body": {"mode": "raw", "raw": "{\n  \"eventName\": \"TechCorp Annual Retreat\",\n  \"eventTypeId\": \"{{eventTypeId}}\",\n  \"eventDate\": \"2026-10-24\",\n  \"eventTime\": \"10:00:00\",\n  \"guestCount\": 150,\n  \"venueAddress\": \"123 Business Way, Suite 500, Metropolis, NY 10001\",\n  \"specialInstructions\": \"Loading dock access required\",\n  \"menuPackageId\": \"{{menuPackageId}}\",\n  \"customOptionIds\": [\"{{customOptionId}}\"]\n}"}, "url": {"raw": "{{baseUrl}}/api/catering/bookings", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings"]}}},
+        {"name": "Get Booking", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}"]}}},
+        {"name": "Update Booking", "request": {"method": "PUT", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Authorization", "value": "Bearer {{token}}"}], "body": {"mode": "raw", "raw": "{\n  \"eventName\": \"Updated Event\",\n  \"eventTypeId\": \"{{eventTypeId}}\",\n  \"eventDate\": \"2026-10-25\",\n  \"eventTime\": \"11:00:00\",\n  \"guestCount\": 160,\n  \"venueAddress\": \"Updated address\",\n  \"specialInstructions\": \"Updated instructions\",\n  \"menuPackageId\": \"{{menuPackageId}}\",\n  \"customOptionIds\": [\"{{customOptionId}}\"]\n}"}, "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}"]}}},
+        {"name": "Confirm Booking", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}/confirm", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}", "confirm"]}}},
+        {"name": "Booking Confirmation", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}/confirmation", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}", "confirmation"]}}},
+        {"name": "Booking Timeline", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}/timeline", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}", "timeline"]}}},
+        {"name": "Cancel Booking", "request": {"method": "PATCH", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings/{{bookingId}}/cancel", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings", "{{bookingId}}", "cancel"]}}},
+        {"name": "Bookings List", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/bookings?page=0&size=10", "host": ["{{baseUrl}}"], "path": ["api", "catering", "bookings"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "10"}]}}},
+        {"name": "Search", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/search?q=techcorp", "host": ["{{baseUrl}}"], "path": ["api", "catering", "search"], "query": [{"key": "q", "value": "techcorp"}]}}}
+      ]
+    },
+    {
+      "name": "Inquiries & Notifications",
+      "item": [
+        {"name": "Inquiries", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/catering/inquiries", "host": ["{{baseUrl}}"], "path": ["api", "catering", "inquiries"]}}},
+        {"name": "Notifications", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}], "url": {"raw": "{{baseUrl}}/api/notifications", "host": ["{{baseUrl}}"], "path": ["api", "notifications"]}}}
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:8080"},
+    {"key": "token", "value": ""},
+    {"key": "eventTypeId", "value": ""},
+    {"key": "menuPackageId", "value": ""},
+    {"key": "customOptionId", "value": ""},
+    {"key": "bookingId", "value": ""}
+  ]
+}
