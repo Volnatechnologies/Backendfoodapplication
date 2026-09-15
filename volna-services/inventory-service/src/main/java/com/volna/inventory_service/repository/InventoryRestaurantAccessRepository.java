@@ -1,0 +1,1 @@
+package com.volna.inventory_service.repository;import com.volna.inventory_service.entity.InventoryRestaurantAccess;import org.springframework.data.jpa.repository.JpaRepository;import java.util.*;public interface InventoryRestaurantAccessRepository extends JpaRepository<InventoryRestaurantAccess,Long>{Optional<InventoryRestaurantAccess> findByAuthUserId(UUID id);}

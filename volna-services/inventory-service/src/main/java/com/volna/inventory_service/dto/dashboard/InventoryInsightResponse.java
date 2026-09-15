@@ -1,0 +1,1 @@
+package com.volna.inventory_service.dto.dashboard;import java.math.BigDecimal;import java.util.List;public record InventoryInsightResponse(String title,String confidence,String message,List<RecommendedItem> recommendedItems,BigDecimal estimatedTotal){public record RecommendedItem(String name,BigDecimal quantity,String unit){}}

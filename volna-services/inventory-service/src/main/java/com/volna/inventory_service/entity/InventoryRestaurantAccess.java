@@ -1,0 +1,3 @@
+package com.volna.inventory_service.entity;
+import jakarta.persistence.*;import java.util.UUID;
+@Entity @Table(name="inventory_restaurant_access",uniqueConstraints=@UniqueConstraint(name="uk_inventory_access_user",columnNames="auth_user_id")) public class InventoryRestaurantAccess { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;@Column(name="restaurant_id",nullable=false)UUID restaurantId;@Column(name="auth_user_id",nullable=false,unique=true)UUID authUserId;public InventoryRestaurantAccess(){}public InventoryRestaurantAccess(UUID r,UUID u){restaurantId=r;authUserId=u;}public Long getId(){return id;}public UUID getRestaurantId(){return restaurantId;}public UUID getAuthUserId(){return authUserId;} }

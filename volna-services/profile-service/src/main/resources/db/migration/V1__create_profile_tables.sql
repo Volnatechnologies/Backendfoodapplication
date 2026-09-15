@@ -1,0 +1,3 @@
+CREATE TABLE profile_restaurant_access (id BIGSERIAL PRIMARY KEY, restaurant_id UUID NOT NULL, auth_user_id UUID NOT NULL UNIQUE);
+CREATE INDEX idx_profile_access_restaurant ON profile_restaurant_access(restaurant_id);
+CREATE TABLE restaurant_profiles (id BIGSERIAL PRIMARY KEY, restaurant_id UUID NOT NULL UNIQUE, restaurant_name VARCHAR(200) NOT NULL, cuisine_type VARCHAR(100), description TEXT, phone VARCHAR(50), email VARCHAR(255), website VARCHAR(255), address VARCHAR(300), city VARCHAR(100), state VARCHAR(100), postal_code VARCHAR(30), country VARCHAR(100), logo_url VARCHAR(500), opening_time TIME, closing_time TIME, active BOOLEAN NOT NULL DEFAULT TRUE, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL);

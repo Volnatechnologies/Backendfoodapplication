@@ -1,0 +1,1 @@
+package com.volna.inventory_service.repository;import com.volna.inventory_service.entity.PurchaseOrder;import org.springframework.data.jpa.repository.JpaRepository;import java.util.*;public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder,Long>{Optional<PurchaseOrder> findByIdAndRestaurantId(Long id,UUID r);}

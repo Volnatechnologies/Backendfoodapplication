@@ -1,0 +1,1 @@
+package com.volna.profile_service.repository;import com.volna.profile_service.entity.RestaurantProfile;import org.springframework.data.jpa.repository.JpaRepository;import java.util.*;public interface RestaurantProfileRepository extends JpaRepository<RestaurantProfile,Long>{Optional<RestaurantProfile> findByRestaurantId(UUID r);boolean existsByRestaurantId(UUID r);}

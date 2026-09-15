@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "Volna Inventory + Profile",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key":"inventoryBase","value":"http://localhost:8086"},
+    {"key":"profileBase","value":"http://localhost:8087"},
+    {"key":"accessToken","value":""},
+    {"key":"itemId","value":"1"},
+    {"key":"vendorId","value":"1"}
+  ],
+  "item": [
+    {"name":"Inventory Dashboard","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":{"raw":"{{inventoryBase}}/api/v1/inventory/dashboard","host":["{{inventoryBase}}"],"path":["api","v1","inventory","dashboard"]}}},
+    {"name":"Inventory Insights","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":{"raw":"{{inventoryBase}}/api/v1/inventory/dashboard/insights","host":["{{inventoryBase}}"],"path":["api","v1","inventory","dashboard","insights"]}}},
+    {"name":"List Items","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":{"raw":"{{inventoryBase}}/api/v1/inventory/items?page=0&size=20","host":["{{inventoryBase}}"],"path":["api","v1","inventory","items"],"query":[{"key":"page","value":"0"},{"key":"size","value":"20"}]} }},
+    {"name":"Create Item","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"All Purpose Flour\",\n  \"sku\": \"FLOUR-001\",\n  \"category\": \"Dry Goods\",\n  \"unit\": \"kg\",\n  \"stockLevel\": 80,\n  \"minimumStock\": 20,\n  \"unitCost\": 55.00,\n  \"expiryDate\": \"2026-12-31\",\n  \"supplier\": \"ABC Foods\"\n}"},"url":{"raw":"{{inventoryBase}}/api/v1/inventory/items","host":["{{inventoryBase}}"],"path":["api","v1","inventory","items"]}}},
+    {"name":"Adjust Stock","request":{"method":"PATCH","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"quantity\": 10\n}"},"url":{"raw":"{{inventoryBase}}/api/v1/inventory/items/{{itemId}}/stock","host":["{{inventoryBase}}"],"path":["api","v1","inventory","items","{{itemId}}","stock"]}}},
+    {"name":"List Vendors","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":{"raw":"{{inventoryBase}}/api/v1/inventory/vendors?page=0&size=20","host":["{{inventoryBase}}"],"path":["api","v1","inventory","vendors"],"query":[{"key":"page","value":"0"},{"key":"size","value":"20"}]} }},
+    {"name":"Create Vendor","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"ABC Foods\",\n  \"contactName\": \"Rahul\",\n  \"phone\": \"9876543210\",\n  \"email\": \"sales@abcfoods.example\"\n}"},"url":{"raw":"{{inventoryBase}}/api/v1/inventory/vendors","host":["{{inventoryBase}}"],"path":["api","v1","inventory","vendors"]}}},
+    {"name":"Create Purchase Order","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"vendorId\": {{vendorId}},\n  \"notes\": \"Weekly replenishment\",\n  \"items\": [\n    {\"inventoryItemId\": {{itemId}}, \"quantity\": 25, \"unitPrice\": 55.00}\n  ]\n}"},"url":{"raw":"{{inventoryBase}}/api/v1/inventory/purchase-orders","host":["{{inventoryBase}}"],"path":["api","v1","inventory","purchase-orders"]}}},
+    {"name":"Get Profile","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":{"raw":"{{profileBase}}/api/v1/profile","host":["{{profileBase}}"],"path":["api","v1","profile"]}}},
+    {"name":"Update Profile","request":{"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"restaurantName\": \"Volna Kitchen\",\n  \"cuisineType\": \"North Indian\",\n  \"description\": \"Fresh meals prepared daily.\",\n  \"phone\": \"9876543210\",\n  \"email\": \"hello@volnakitchen.example\",\n  \"website\": \"https://example.com\",\n  \"address\": \"Main Market\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"postalCode\": \"122001\",\n  \"country\": \"India\",\n  \"logoUrl\": \"https://example.com/logo.png\",\n  \"openingTime\": \"10:00:00\",\n  \"closingTime\": \"23:00:00\",\n  \"active\": true\n}"},"url":{"raw":"{{profileBase}}/api/v1/profile","host":["{{profileBase}}"],"path":["api","v1","profile"]}}}
+  ]
+}

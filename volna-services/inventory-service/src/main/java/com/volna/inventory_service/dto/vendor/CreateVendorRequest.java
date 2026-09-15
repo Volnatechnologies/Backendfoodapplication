@@ -1,0 +1,1 @@
+package com.volna.inventory_service.dto.vendor;import jakarta.validation.constraints.NotBlank;public class CreateVendorRequest{@NotBlank String name;String contactName;String phone;String email;public String getName(){return name;}public String getContactName(){return contactName;}public String getPhone(){return phone;}public String getEmail(){return email;}}

@@ -1,0 +1,1 @@
+package com.volna.inventory_service.dto.inventory;import jakarta.validation.constraints.NotNull;import java.math.BigDecimal;public class StockAdjustmentRequest {@NotNull BigDecimal quantity;public BigDecimal getQuantity(){return quantity;}}
