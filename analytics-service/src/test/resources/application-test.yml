@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: analytics-financial-backend-test
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    open-in-view: false
+  flyway:
+    enabled: false
+  jackson:
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: -1
+
+app:
+  jwt:
+    secret: RTp40Z/7pbRiwArwWjS3Xch9PgKe7LhO1j7u+BFc2Xs=
+    expiration-ms: 86400000
+
+logging:
+  level:
+    root: INFO
+    com.caloryhive.business: WARN

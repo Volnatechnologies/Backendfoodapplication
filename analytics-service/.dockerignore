@@ -1,0 +1,11 @@
+target/
+!target/*.jar
+.git
+.gitignore
+.env
+.env.*
+node_modules/
+*.log
+scratch/
+run_cp.txt
+jwt_token.txt

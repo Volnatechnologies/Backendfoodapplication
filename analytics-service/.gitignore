@@ -1,0 +1,46 @@
+# Build outputs
+target/
+*.jar
+*.war
+*.ear
+*.class
+dist/
+
+# Environment and Secret Configurations
+.env
+.env.*
+!.env.example
+application-prod.properties
+application-local.yml
+application-local.properties
+
+# Secrets, Credentials, and Private Keys
+secrets/
+credentials/
+*.pem
+*.key
+*.pkcs12
+*.p12
+*.crt
+*.jks
+*.keystore
+
+# Logs
+*.log
+logs/
+
+# IDE and Editor Files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.DS_Store
+Thumbs.db
+
+# Node / Scratch
+node_modules/
+scratch/
+jwt_token.txt
+run_cp.txt
