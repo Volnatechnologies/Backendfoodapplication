@@ -1,0 +1,46 @@
+server:
+  port: ${SERVER_PORT:8088}
+spring:
+  application:
+    name: customer-order-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/order_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX_SIZE:10}
+      minimum-idle: ${DB_POOL_MIN_IDLE:2}
+      connection-timeout: ${DB_CONNECTION_TIMEOUT_MS:30000}
+      idle-timeout: ${DB_IDLE_TIMEOUT_MS:600000}
+      max-lifetime: ${DB_MAX_LIFETIME_MS:1800000}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+services:
+  menu-url: ${MENU_SERVICE_URL:http://localhost:8089}
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 3600000
+  checkout:
+    tax-rate: ${CHECKOUT_TAX_RATE:0.0825}
+    delivery-fee: ${CHECKOUT_DELIVERY_FEE:40.00}
+    packaging-fee: ${CHECKOUT_PACKAGING_FEE:10.00}

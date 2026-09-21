@@ -6,8 +6,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/auth_db
     username: postgres
-    password: VolnaMuskan
-  jpa:
+        password: ${SPRING_DATASOURCE_PASSWORD}
+jpa:
     hibernate:
       ddl-auto: validate
   flyway:
@@ -20,5 +20,5 @@ management:
         include: health,info
 app:
   jwt:
-    secret: "RTp40Z/7pbRiwArwWjS3Xch9PgKe7LhO1j7u+BFc2Xs="
+   secret: ${JWT_SECRET}
     expiration-ms: 3600000
