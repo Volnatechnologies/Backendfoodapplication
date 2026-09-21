@@ -9,8 +9,8 @@ services:
     environment:
       POSTGRES_DB: auth_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: VolnaMuskan
-    ports:
+      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD}
+      ports:
       - "5433:5432"
     volumes:
       - auth_postgres_data:/var/lib/postgresql/data
@@ -30,7 +30,7 @@ services:
     environment:
       POSTGRES_DB: restaurant_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: VolnaMuskan
+      POSTGRES_PASSWORD: ${RESTAURANT_DB_PASSWORD}
     ports:
       - "5434:5432"
     volumes:
@@ -53,7 +53,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://auth-postgres:5432/auth_db
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: VolnaMuskan
+      SPRING_DATASOURCE_PASSWORD: ${AUTH_DB_PASSWORD}
     depends_on:
       auth-postgres:
         condition: service_healthy
@@ -70,8 +70,8 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://restaurant-postgres:5432/restaurant_db
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: VolnaMuskan
-    volumes:
+     SPRING_DATASOURCE_PASSWORD: ${RESTAURANT_DB_PASSWORD}
+     volumes:
       - ./uploads:/app/uploads
     depends_on:
       restaurant-postgres:
